@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'user signs up' do
   scenario 'user supplies all info correctly' do
@@ -11,7 +11,7 @@ feature 'user signs up' do
     fill_in 'Password Confirmation', with: 'password'
     click_button 'Sign Up'
 
-    expect(page).to have_content("Sign up successful.")
+    expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_link("Sign Out")
   end
 
