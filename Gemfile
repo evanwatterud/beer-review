@@ -22,6 +22,7 @@ end
 
 group :test do
   gem 'launchy', require: false
+  gem 'selenium-webdriver'
 end
 
 group :production do
