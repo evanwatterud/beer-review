@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GemReview</title>
+    <title>Beer Review</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="top-nav-bar">
+    <div class="nav-bar" id="top">
       <nav>
         <ul>
           <% if user_signed_in? %>
@@ -21,6 +21,15 @@
         </ul>
       </nav>
     </div>
+
+    <div class="nav-bar" id="top-sub">
+      <nav>
+        <ul>
+          <li><%= link_to 'Add Beer', new_beer_path %></li>
+        </ul>
+      </nav>
+    </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
