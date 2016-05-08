@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'country_select'
+gem 'puma'
 
 group :development, :test do
   gem 'capybara'
