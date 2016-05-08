@@ -47,7 +47,7 @@ feature 'update account details' do
     click_link 'Sign Out'
     visit edit_user_registration_path
 
-    expect(page).to have_content("You need to sign in or sign up before continuing.")
+    expect(page).to have_content("You must be logged in to do that.")
   end
 
   def sign_in(email, password)

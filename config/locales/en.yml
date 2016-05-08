@@ -20,4 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+    errors:
+      models:
+        beer:
+          attributes:
+            name:
+              taken: "A beer with that name has already been added!"
+            abv:
+              greater_than_or_equal_to: "can't be less than 0%!"
+              less_than_or_equal_to: "can't be greater than 100%!"
