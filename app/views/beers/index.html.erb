@@ -3,7 +3,7 @@
 <div class="beer-list">
   <ul>
     <% @beers.each do |beer| %>
-      <li><%= beer.name %></li>
+      <li><a href='beers/<%= beer.id %>'><%= beer.name %></a></li>
     <% end %>
   </ul>
 </div>

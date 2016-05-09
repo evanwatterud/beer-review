@@ -16,6 +16,22 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+def log_in
+  user = FactoryGirl.create(:user)
+  visit root_path
+  click_link 'Sign In'
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: user.password
+  click_button 'Log In'
+  return user
+end
+
+def expect_page_to_have(*args)
+  args.each do |arg|
+    expect(page).to have_content(arg)
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

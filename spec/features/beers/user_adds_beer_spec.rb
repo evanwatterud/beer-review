@@ -63,12 +63,6 @@ feature 'user adds beer' do
     expect_page_to_have('Log In', 'You must be logged in to do that.')
   end
 
-  def expect_page_to_have(*args)
-    args.each do |arg|
-      expect(page).to have_content(arg)
-    end
-  end
-
   def add_beer
     fill_in 'Beer Name', with: 'Some Beer'
     fill_in 'Brewer', with: 'Beer Brewer'

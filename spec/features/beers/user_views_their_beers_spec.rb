@@ -31,20 +31,4 @@ feature 'user views the beers they have added' do
     expect(page).to have_button('Log In')
     expect(page).to have_content('You must be logged in to do that.')
   end
-
-  def expect_page_to_have(*args)
-    args.each do |arg|
-      expect(page).to have_content(arg)
-    end
-  end
-
-  def log_in
-    user = FactoryGirl.create(:user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log In'
-    return user
-  end
 end
