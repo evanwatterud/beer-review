@@ -4,7 +4,7 @@
   <ul>
     <% @beers.each do |beer| %>
       <li><a href='/beers/<%= beer.id %>'><%= beer.name %></a></li>
-      <li><%= button_to 'Update', edit_beer_path(beer.id), method: :get %></li>
+      <%= button_to 'Update', edit_beer_path(beer.id), method: :get %>
     <% end %>
   </ul>
 </div>
