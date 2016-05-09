@@ -1,0 +1,19 @@
+<%= simple_form_for(@beer) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Beer Name', required: true, autofocus: true %>
+    <%= f.input :brewer, required: true %>
+    <%= f.input :brewing_country, label: 'Brewing Country', required: true %>
+    <%= f.input :style, required: true %>
+    <%= f.input :abv, label: 'Alcohol by Volume', required: true %>
+  </div>
+
+  <div class="form-actions">
+    <% if controller.action_name == 'edit' || controller.action_name == 'update' %>
+      <%= f.button :submit, "Update" %>
+    <% elsif controller.action_name == 'new' || controller.action_name == 'create' %>
+      <%= f.button :submit, "Add Beer" %>
+    <% end %>
+  </div>
+<% end %>
