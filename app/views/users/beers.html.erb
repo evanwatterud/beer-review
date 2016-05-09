@@ -1,0 +1,15 @@
+<h1>Your Beers</h1>
+
+<div class="beer-list">
+  <ul>
+    <% @beers.each do |beer| %>
+      <li><%= beer.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="no-beers-added">
+  <% if @beers == [] %>
+    <h3>You haven't added any beers yet!</h3>
+  <% end %>
+</div>

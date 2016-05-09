@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'beers/index'
 
   devise_for :users
+
+
+  get 'users/:id/beers' => 'users#beers', as: 'user_beers'
 
   root 'welcome#index'
 
