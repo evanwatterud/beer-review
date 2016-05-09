@@ -31,4 +31,14 @@ feature 'user views the beers they have added' do
     expect(page).to have_button('Log In')
     expect(page).to have_content('You must be logged in to do that.')
   end
+
+  scenario 'authenticated user tries to view beers that they did not create' do
+    user = log_in
+    beer = FactoryGirl.create(:beer, user_id: user.id)
+    click_link 'Sign Out'
+    user2 = log_in
+
+    visit user_beers_path(user.id)
+    expect(current_path).to eq(root_path)
+  end
 end

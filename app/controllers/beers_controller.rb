@@ -1,5 +1,6 @@
 class BeersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @beers = Beer.all
@@ -26,6 +27,9 @@ class BeersController < ApplicationController
 
   def edit
     @beer = Beer.find(params[:id])
+    unless current_user.beers.include?(@beer)
+      raise ActionController::RoutingError.new("Not Found")
+    end
   end
 
   def update
@@ -40,5 +44,12 @@ class BeersController < ApplicationController
   protected
   def beer_params
     params.require(:beer).permit(:name, :brewer, :style, :brewing_country, :abv)
+  end
+
+  def correct_user
+    @beer = Beer.find(params[:id])
+    unless current_user.beers.include?(@beer)
+      redirect_to root_path
+    end
   end
 end

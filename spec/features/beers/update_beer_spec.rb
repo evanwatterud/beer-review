@@ -46,4 +46,14 @@ feature 'update the information of a beer' do
 
     expect_page_to_have("A beer with that name has already been added!", 'Update')
   end
+
+  scenario 'authenticated user tries to edit beer that they did not create' do
+    user = log_in
+    beer = FactoryGirl.create(:beer, user_id: user.id)
+    click_link 'Sign Out'
+    user2 = log_in
+
+    visit edit_beer_path(beer.id)
+    expect(current_path).to eq(root_path)
+  end
 end

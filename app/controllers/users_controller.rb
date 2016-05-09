@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user
 
   def beers
-    user = User.find(params[:id])
-    @beers = user.beers
+    @beers = @user.beers
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user == @user
+      redirect_to root_path
+    end
   end
 end
