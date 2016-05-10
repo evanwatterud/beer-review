@@ -7,7 +7,16 @@
   <li>ABV: <%= @beer.abv %>%</li>
 </ul>
 
-
+<ul>
+  <% @reviews.each do |review| %>
+    <div class="user_review">
+      <li>
+        <h3><%= "#{review.user.first_name} #{review.user.last_name}" %></h3>
+        <p><%= review.body %></p>
+      </li>
+    </div>
+  <% end %>
+</ul>
 
 <%= simple_form_for([@beer, @review]) do |f| %>
   <%= f.error_notification %>

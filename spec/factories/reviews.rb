@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :review do
-    text ""
-    integer ""
-    integer ""
+    sequence(:body) { |n| "best beer ever #{n}" }
+    user_id 1
+    beer_id 1
   end
 end
