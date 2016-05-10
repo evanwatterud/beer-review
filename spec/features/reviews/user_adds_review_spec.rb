@@ -25,5 +25,9 @@ feature 'user adds a review to a beer' do
     within('.review_box') do
       expect(page).to have_content('Log in to add reviews')
     end
+
+    page.driver.submit :post, beer_reviews_path(@beer), {}
+    expect(page).to have_content('You must be logged in to do that')
+    expect(current_path).to eq('/users/sign_in')
   end
 end

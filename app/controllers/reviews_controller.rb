@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @beer = Beer.find(params[:beer_id])
     @review = Review.new(review_params)
