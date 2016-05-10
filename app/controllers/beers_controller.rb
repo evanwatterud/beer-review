@@ -29,9 +29,6 @@ class BeersController < ApplicationController
 
   def edit
     @beer = Beer.find(params[:id])
-    unless current_user.beers.include?(@beer)
-      raise ActionController::RoutingError.new("Not Found")
-    end
   end
 
   def update

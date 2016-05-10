@@ -13,6 +13,11 @@
       <li>
         <h3><%= "#{review.user.first_name} #{review.user.last_name}" %></h3>
         <p><%= review.body %></p>
+        <div class="review_links">
+          <% if current_user && current_user.reviews.include?(review) %>
+            <%= link_to 'Edit', edit_beer_review_path(@beer, review) %>
+          <% end %>
+        </div>
       </li>
     </div>
   <% end %>
