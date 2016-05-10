@@ -13,10 +13,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :body, required: true, input_html: { class: 'review-box' }, label: false %>
+    <% if current_user == nil %>
+      <%= f.input :body, required: true, input_html: { value: 'Log in to add reviews', class: 'review_box' }, label: false, disabled: true %>
+    <% else %>
+      <%= f.input :body, required: true, input_html: { class: 'review-box' }, label: false %>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Add Review" %>
+    <% if current_user == nil %>
+      <%= f.button :submit, "Add Review", disabled: true %>
+    <% else %>
+      <%= f.button :submit, "Add Review" %>
+    <% end %>
   </div>
 <% end %>
