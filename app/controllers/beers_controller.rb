@@ -1,6 +1,6 @@
 class BeersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @beers = Beer.all
@@ -39,6 +39,11 @@ class BeersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Beer.find(params[:id]).destroy
+    redirect_to user_beers_path(current_user.id), notice: 'Successfully deleted beer.'
   end
 
   protected

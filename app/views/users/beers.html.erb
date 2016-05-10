@@ -3,8 +3,11 @@
 <div class="beer-list">
   <ul>
     <% @beers.each do |beer| %>
-      <li><a href='/beers/<%= beer.id %>'><%= beer.name %></a></li>
-      <%= button_to 'Update', edit_beer_path(beer.id), method: :get %>
+      <div class="show-<%= beer.name %>">
+        <li><a href='/beers/<%= beer.id %>'><%= beer.name %></a></li>
+        <%= button_to 'Update', edit_beer_path(beer.id), method: :get %>
+        <%= button_to 'Delete', beer_path(beer.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     <% end %>
   </ul>
 </div>
