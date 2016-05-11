@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
-  it { should have_valid(:value).when(1, 1000, -2) }
-  it { should_not have_valid(:value).when(nil, '', 'text', 0.3) }
+  it { should have_valid(:value).when(1, -1) }
+  it { should_not have_valid(:value).when(nil, '', 'text', 0.3, 0, 32, -34) }
 
   it { should have_valid(:user_id).when(1) }
   it { should_not have_valid(:user_id).when(nil, '', 'text') }

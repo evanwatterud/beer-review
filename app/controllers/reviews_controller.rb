@@ -36,9 +36,32 @@ class ReviewsController < ApplicationController
     redirect_to beer_path(Beer.find(params[:beer_id])), notice: "Successfully deleted review."
   end
 
+  def upvote
+    vote_handling(1)
+  end
+
+  def downvote
+    vote_handling(-1)
+  end
+
   protected
   def review_params
     params.require(:review).permit(:body)
+  end
+
+  def vote_handling(num)
+    @review = Review.find(params[:id])
+    vote = Vote.find_by(user: current_user, review: @review)
+    if vote
+      if vote.value == -(num)
+        vote.update_attributes(value: num)
+      else
+        vote.destroy
+      end
+    else
+      Vote.create(value: num, user: current_user, review: @review)
+    end
+    redirect_to beer_path(@review.beer)
   end
 
   def correct_user

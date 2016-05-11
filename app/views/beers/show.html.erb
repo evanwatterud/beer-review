@@ -19,6 +19,11 @@
             <%= link_to 'Delete', beer_review_path(@beer, review), method: :delete %>
           <% end %>
         </div>
+        <div class="review_votes">
+          <%= link_to 'Upvote', upvote_review_path(review), method: :post %>
+          <p><%= review.votes.inject(0) { |sum, vote| sum += vote.value } %></p>
+          <%= link_to 'Downvote', downvote_review_path(review), method: :post %>
+        </div>
       </li>
     </div>
   <% end %>
