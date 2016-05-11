@@ -19,7 +19,7 @@ feature 'user deletes beer' do
   scenario 'authenticated user tries to delete beer they did not create' do
     user = log_in
     beer = FactoryGirl.create(:beer)
-    page.driver.submit :delete, beer_path(beer.id), {}
+    page.driver.submit :delete, beer_path(beer), {}
 
     expect(current_path).to eq(root_path)
     expect(Beer.all.length).to eq(1)

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :beers do
-    resources :reviews, only: [:create, :update, :edit]
+    resources :reviews, only: [:create, :update, :edit, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

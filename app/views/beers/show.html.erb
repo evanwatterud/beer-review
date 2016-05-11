@@ -16,6 +16,7 @@
         <div class="review_links">
           <% if current_user && current_user.reviews.include?(review) %>
             <%= link_to 'Edit', edit_beer_review_path(@beer, review) %>
+            <%= link_to 'Delete', beer_review_path(@beer, review), method: :delete %>
           <% end %>
         </div>
       </li>

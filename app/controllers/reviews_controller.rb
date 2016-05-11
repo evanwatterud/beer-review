@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
     @beer = Beer.find(params[:beer_id])
@@ -28,6 +28,11 @@ class ReviewsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Review.find(params[:id]).destroy
+    redirect_to beer_path(Beer.find(params[:beer_id])), notice: "Successfully deleted review."
   end
 
   protected
