@@ -22,6 +22,19 @@ feature 'user updates a review' do
     end
   end
 
+  scenario 'authenticated user updates a review with blank information' do
+    review = FactoryGirl.create(:review, beer: @beer, user: @user)
+    visit beer_path(@beer)
+
+    within('.user_review') do
+      click_link 'Edit'
+    end
+    fill_in 'review_body', with: ''
+    click_button 'Save Edits'
+
+    expect(page).to have_content("can't be blank")
+  end
+
   scenario 'authenticated user can not update reviews they did not create' do
     user = FactoryGirl.create(:user)
     review = FactoryGirl.create(:review, beer: @beer, user: user)

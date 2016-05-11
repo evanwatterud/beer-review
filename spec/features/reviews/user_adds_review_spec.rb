@@ -17,6 +17,17 @@ feature 'user adds a review to a beer' do
     expect(@beer.reviews.length).to eq(1)
   end
 
+  scenario 'authenticated user tries to add a blank review' do
+    user = log_in
+    visit beer_path(@beer)
+
+    click_button 'Add Review'
+
+    expect(current_path).to eq(beer_reviews_path(@beer))
+    expect(page).to have_content("can't be blank")
+    expect(@beer.reviews.length).to eq(0)
+  end
+
   scenario 'unauthenticated user can not add reviews' do
     visit beer_path(@beer)
 

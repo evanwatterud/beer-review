@@ -7,11 +7,12 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.beer = @beer
+    @reviews = @beer.reviews
 
     if @review.save
       redirect_to beer_path(@beer)
     else
-      redirect_to beer_path(@beer)
+      render "beers/show.html.erb"
     end
   end
 
