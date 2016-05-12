@@ -66,7 +66,7 @@ class ReviewsController < ApplicationController
 
   def correct_user
     @review = Review.find(params[:id])
-    unless current_user.reviews.include?(@review)
+    unless (current_user.reviews.include?(@review) || current_user.role == 'admin')
       redirect_to root_path
     end
   end

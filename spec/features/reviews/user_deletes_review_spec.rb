@@ -32,6 +32,19 @@ feature 'user deletes a review' do
     expect(current_path).to eq(root_path)
   end
 
+  scenario 'admin deletes a review' do
+    click_link 'Sign Out'
+    admin = log_in('admin')
+    visit beer_path(@beer)
+
+    within('.user_review') do
+      click_link 'Delete'
+    end
+
+    expect(page).to_not have_css('.user_review')
+    expect(page).to have_content('Successfully deleted review.')
+  end
+
   scenario 'unauthenticated user cannot delete reviews' do
     click_link 'Sign Out'
     visit beer_path(@beer)
