@@ -4,6 +4,9 @@
   <ul>
     <% @beers.each do |beer| %>
       <li><a href='beers/<%= beer.id %>'><%= beer.name %></a></li>
+      <% if current_user && current_user.role == 'admin' %>
+        <%= button_to 'Delete', beer_path(beer), method: :delete %>
+      <% end %>
     <% end %>
   </ul>
 </div>

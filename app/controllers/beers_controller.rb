@@ -52,7 +52,7 @@ class BeersController < ApplicationController
 
   def correct_user
     @beer = Beer.find(params[:id])
-    unless current_user.beers.include?(@beer)
+    unless (current_user.beers.include?(@beer) || current_user.role == 'admin')
       redirect_to root_path
     end
   end

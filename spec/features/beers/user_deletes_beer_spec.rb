@@ -24,4 +24,16 @@ feature 'user deletes beer' do
     expect(current_path).to eq(root_path)
     expect(Beer.all.length).to eq(1)
   end
+
+  scenario 'admin deletes a beer' do
+    admin = log_in('admin')
+    beer = FactoryGirl.create(:beer)
+    click_link 'Beers'
+
+    click_button 'Delete'
+
+    expect(page).to have_content('Successfully deleted beer.')
+    expect(page).to_not have_content(beer.name)
+    expect(Beer.all).to eq([])
+  end
 end
