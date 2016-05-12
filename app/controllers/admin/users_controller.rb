@@ -5,6 +5,19 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def destroy
+    user = User.find(params[:id])
+    if user == current_user
+      flash[:notice] = "You can't delete yourself!"
+    elsif user.role == 'admin'
+      flash[:notice] = "You can't delete other admins!"
+    else
+      User.find(params[:id]).destroy
+      flash[:notice] = "Successfully deleted user."
+    end
+    redirect_to admin_users_path
+  end
+
   protected
 
   def check_admin

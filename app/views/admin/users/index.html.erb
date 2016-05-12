@@ -1,7 +1,24 @@
 <h1>All Users</h1>
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= "#{user.first_name} #{user.last_name}" %></li>
-  <% end %>
-</ul>
+<h3>Members</h3>
+<div class="members">
+  <ul>
+    <% @users.each do |user| %>
+      <% if user.role == 'member' %>
+        <li><%= "#{user.first_name} #{user.last_name}" %></li>
+        <%= button_to 'Delete', admin_user_path(user), method: :delete %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<h3>Admins</h3>
+<div class="admins">
+  <ul>
+    <% @users.each do |user| %>
+      <% if user.role == 'admin' %>
+        <li><%= "#{user.first_name} #{user.last_name}" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
