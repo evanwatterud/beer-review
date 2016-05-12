@@ -16,8 +16,8 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-def log_in
-  user = FactoryGirl.create(:user)
+def log_in(role = 'member')
+  user = FactoryGirl.create(:user, role: role)
   visit root_path
   click_link 'Sign In'
   fill_in 'Email', with: user.email

@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @beers = @user.beers
   end
 
+  protected
+  
   def correct_user
     @user = User.find(params[:id])
     unless current_user == @user
