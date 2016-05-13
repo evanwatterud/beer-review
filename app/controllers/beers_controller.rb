@@ -3,7 +3,11 @@ class BeersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @beers = Beer.all.page(params[:page])
+    if params[:search]
+      @beers = Beer.search(params[:search][:query]).page(params[:page])
+    else
+      @beers = Beer.search(nil).page(params[:page])
+    end
   end
 
   def new

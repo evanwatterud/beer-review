@@ -36,4 +36,24 @@ RSpec.describe Beer, type: :model do
 
     expect(beer.user).to eq(user)
   end
+
+  describe "#search" do
+    before(:each) do
+      @coors = FactoryGirl.create(:beer, name: 'Coors')
+      @jameson = FactoryGirl.create(:beer, name: 'Jameson')
+    end
+
+    it 'gets all beers when no search given' do
+      expect(Beer.search.length).to eq(2)
+    end
+
+    it 'gets correct beer when name is searched' do
+      expect(Beer.search('Jameson').first).to eq(@jameson)
+    end
+
+    it 'gets beers when they start with search letter' do
+      jim_beam =FactoryGirl.create(:beer, name: 'Jim Beam')
+      expect(Beer.search('J')).to eq([@jameson, jim_beam])
+    end
+  end
 end
