@@ -7,6 +7,7 @@ feature 'user signs up' do
     fill_in 'First Name', with: 'Evan'
     fill_in 'Last Name', with: 'Watterud'
     fill_in 'Email', with: 'user@example.com'
+    attach_file("Profile Photo", Rails.root + "spec/fixtures/missing.jpg")
     fill_in 'user_password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
     click_button 'Sign Up'

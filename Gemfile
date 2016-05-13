@@ -11,6 +11,9 @@ gem 'devise'
 gem 'simple_form'
 gem 'country_select'
 gem 'puma'
+gem 'fog-aws'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'capybara'
@@ -19,11 +22,13 @@ group :development, :test do
   gem 'pry-rails'
   gem 'shoulda'
   gem 'valid_attribute'
+  gem 'dotenv-rails'
 end
 
 group :test do
   gem 'launchy', require: false
   gem 'selenium-webdriver'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :production do

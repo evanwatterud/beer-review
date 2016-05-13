@@ -11,7 +11,7 @@
   <% @reviews.each do |review| %>
     <div class="user_review">
       <li>
-        <h3><%= "#{review.user.first_name} #{review.user.last_name}" %></h3>
+        <h3><%= image_tag review.user.avatar.url %><%= "#{review.user.first_name} #{review.user.last_name}" %></h3>
         <p><%= review.body %></p>
         <div class="review_links">
           <% if current_user && (current_user.reviews.include?(review) || current_user.role == 'admin') %>
