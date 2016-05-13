@@ -3,7 +3,7 @@ class BeersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @beers = Beer.all
+    @beers = Beer.all.page(params[:page])
   end
 
   def new
@@ -13,7 +13,7 @@ class BeersController < ApplicationController
   def show
     @beer = Beer.find(params[:id])
     @review = Review.new
-    @reviews = @beer.reviews
+    @reviews = @beer.reviews.page(params[:page])
   end
 
   def create

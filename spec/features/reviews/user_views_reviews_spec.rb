@@ -16,6 +16,15 @@ feature 'user views reviews for a beer' do
     end
   end
 
+  scenario 'authenticated user can navigate reviews with pagination' do
+    pagination_review = FactoryGirl.create(:review, beer: @beer, user: @user)
+    visit beer_path(@beer)
+
+    click_link '2', match: :first
+
+    expect(page).to have_content(pagination_review.body)
+  end
+
   scenario 'unauthenticated user views reviews for a beer' do
     click_link 'Sign Out'
     visit beer_path(@beer)

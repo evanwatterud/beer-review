@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.beer = @beer
-    @reviews = @beer.reviews
+    @reviews = @beer.reviews.page(params[:id])
 
     if @review.save
       redirect_to beer_path(@beer)

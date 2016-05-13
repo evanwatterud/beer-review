@@ -14,6 +14,7 @@ gem 'puma'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'kaminari'
 
 group :development, :test do
   gem 'capybara'

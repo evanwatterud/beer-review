@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_action :correct_user
 
   def beers
-    @beers = @user.beers
+    @beers = @user.beers.page(params[:page])
   end
 
   protected
-  
+
   def correct_user
     @user = User.find(params[:id])
     unless current_user == @user

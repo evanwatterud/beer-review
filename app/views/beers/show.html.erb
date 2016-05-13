@@ -7,6 +7,8 @@
   <li>ABV: <%= @beer.abv %>%</li>
 </ul>
 
+<%= paginate @reviews %>
+
 <ul>
   <% @reviews.each do |review| %>
     <div class="user_review">
@@ -28,6 +30,8 @@
     </div>
   <% end %>
 </ul>
+
+<%= paginate @reviews %>
 
 <%= simple_form_for([@beer, @review]) do |f| %>
   <%= f.error_notification %>

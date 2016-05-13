@@ -1,5 +1,7 @@
 <h1>All Beers</h1>
 
+<%= paginate @beers %>
+
 <div class="beer-list">
   <ul>
     <% @beers.each do |beer| %>
@@ -10,3 +12,5 @@
     <% end %>
   </ul>
 </div>
+
+<%= paginate @beers %>

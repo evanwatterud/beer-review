@@ -6,11 +6,16 @@ feature 'user views the beers they have added' do
     user2 = FactoryGirl.create(:user)
 
     beer1, beer2, beer3 = FactoryGirl.create(:beer, user_id: user.id), FactoryGirl.create(:beer, user_id: user.id), FactoryGirl.create(:beer, user_id: user2.id)
+    pagination_beers = FactoryGirl.create_list(:beer, 2, user_id: user.id)
 
     click_link 'Your Beers'
 
     expect_page_to_have(beer1.name, beer2.name, 'Your Beers')
     expect(page).to_not have_content(beer3.name)
+
+    click_link '2', match: :first
+
+    expect(page).to have_content(pagination_beers.last.name)
   end
 
   scenario 'authenticated user views page when they have not added beers' do
