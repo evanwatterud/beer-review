@@ -24,6 +24,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'valid_attribute'
   gem 'dotenv-rails'
+  gem 'mailcatcher'
 end
 
 group :test do

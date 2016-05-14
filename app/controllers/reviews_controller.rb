@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
     @reviews = @beer.reviews.page(params[:id])
 
     if @review.save
+      ReviewMailer.new_review(@review).deliver_later
       redirect_to beer_path(@beer)
     else
       render "beers/show.html.erb"
