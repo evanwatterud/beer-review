@@ -1,2 +1,2 @@
-# Gem Review
-Your app description, here.
+# Beer Review
+A community driven site for reviewing different beers
